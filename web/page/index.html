@@ -24,6 +24,13 @@ td { vertical-align: top; }
 <div id=Introduction class="collapsible"><table border=1><tr><td><p>{{PAGE_INFO}}</p></div></td></tr></table>
 </td></tr>
 
+<tr><td width=1>
+<input type=submit onclick="ShowHideEvent( 'RSSIgraph' ); KickRSSIgraph();" value="RSSI Graph"></td><td>
+<div id=RSSIgraph class="collapsible">
+<table width=100% border=1><tr><td width=10%>
+<CANVAS id=RSSIgraphCanvas width=512></CANVAS>
+</td><td><input type=button onclick="ToggleRSSIPause();" id=RSSIPauseButton value="|| / >"><input id="OSCMultIn" type="range" value="1" max="5" min="0" step="0.1"><output id="OSCMultOut"></output></td></tr></table></div></td></tr>
+
 </tbody></table>
 
 

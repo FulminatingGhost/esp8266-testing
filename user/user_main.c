@@ -11,6 +11,7 @@
 #include "commonservices.h"
 #include "vars.h"
 #include <mdns.h>
+#include "ssd1306_spi.h"
 
 #define procTaskPrio        0
 #define procTaskQueueLen    1
@@ -67,7 +68,7 @@ void user_init(void)
 	CSSettingsLoad( 0 );
 	CSPreInit();
 
-    pUdpServer = (struct espconn *)os_zalloc(sizeof(struct espconn));
+	pUdpServer = (struct espconn *)os_zalloc(sizeof(struct espconn));
 	ets_memset( pUdpServer, 0, sizeof( struct espconn ) );
 	espconn_create( pUdpServer );
 	pUdpServer->type = ESPCONN_UDP;
@@ -103,6 +104,8 @@ void user_init(void)
 	wifi_fpm_set_sleep_type(LIGHT_SLEEP_T);
 
 	system_os_post(procTaskPrio, 0, 0 );
+	ssd1306_init();
+
 }
 
 

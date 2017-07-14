@@ -22,6 +22,16 @@ int ICACHE_FLASH_ATTR CustomCommand(char * buffer, int retsize, char *pusrdata, 
 			printf( "%s\n", buffend );
 			return len-2;
 		break;
+	        case 'm': case 'M': //Oscilloscope
+		{
+			int i;
+                	buffend += ets_sprintf( buffend, "CM\t" );
+			uint8_t rssi = (uint8_t)abs(wifi_station_get_rssi());
+                        *(buffend++) = tohex1( rssi>>4 );
+                        *(buffend++) = tohex1( rssi&0x0f );
+        		return buffend-buffer;
+		}
+		break;
 	}
 
 	return -1;
